@@ -70,6 +70,11 @@ export const App = () => {
       });
   }, [word, page]);
 
+  const onFormSubmit = data => {
+    setWord(data);
+    setPage(1);
+  };
+
   const toggleModal = e => {
     if (!isModalShow) {
       setCurrentPicture(
@@ -81,12 +86,7 @@ export const App = () => {
 
   return (
     <AppWrap>
-      <Searchbar
-        onSubmit={e => {
-          setWord(e);
-          setPage(1);
-        }}
-      />
+      <Searchbar onSubmit={onFormSubmit} />
 
       {status === STATUS.REJECTED && <ErrorView message={error} />}
 
